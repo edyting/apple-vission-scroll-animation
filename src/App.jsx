@@ -1,10 +1,11 @@
+import  { TextParallaxExample } from "./components/TextParallax"
 
 function App() {
 
 
   return (
     <>
-    initial setup
+    <TextParallaxExample/>
     </>
   )
 }
