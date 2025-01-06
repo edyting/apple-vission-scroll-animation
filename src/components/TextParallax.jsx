@@ -7,23 +7,30 @@ export const TextParallaxExample = () => {
     return (
       <div className="">
         <TextParallax
-          imgurl={"/pexels-cottonbro-2925328.jpg"}
-          subheading="Collaborate"
-          heading="Built for all of us"
+          imgurl={"/public/8443739-uhd_4096_2160_25fps.mp4"}
+          subheading="Craftsmanship"
+          heading="Precision in Every Detail"
         >
           <ExampleContent />
         </TextParallax>
         <TextParallax
-          imgurl={"/pexels-cottonbro-7299586.jpg"}
-          subheading="Quality"
-          heading="Never Compromise"
+          imgurl={"/10378786-uhd_4096_2160_25fps.mp4"}
+          subheading="Innovation"
+          heading="Pioneering Excellence"
         >
           <ExampleContent />
         </TextParallax>
         <TextParallax
-          imgurl={"/pexels-rpnickson-3131971.jpg"}
-          subheading="Modern"
-          heading="Just for the best"
+          imgurl={"/10547305-uhd_2160_4096_25fps.mp4"}
+          subheading="Excellence"
+          heading="Unyielding Standards"
+        >
+          <ExampleContent />
+        </TextParallax>
+        <TextParallax
+          imgurl={"/9510020-uhd_2160_4096_25fps.mp4"}
+          subheading="Integrity"
+          heading="Commitment to Quality"
         >
           <ExampleContent />
         </TextParallax>
@@ -70,15 +77,16 @@ export const StickyImg = ({ imgurl }) => {
       <motion.div
         ref={targetRef}
         style={{
-          backgroundImage: `url(${imgurl})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
+          
           height: `calc(100vh - ${imgPadding * 2}px)`,
           top: imgPadding,
           scale,
         }}
         className="sticky overflow-hidden  rounded-3xl"
-      >
+        >
+            <video className="w-full h-full absolute top-0 right-0 object-cover" muted autoPlay loop>
+                <source src={imgurl} type="video/mp4" />
+            </video>
         <motion.div
           style={{ opacity }}
           className="absolute inset-0 bg-neutral-950/70"
@@ -89,14 +97,22 @@ export const StickyImg = ({ imgurl }) => {
 
 
 export const OverlayCopy = ({ subheading, heading }) => {
-  
+  const targetRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: targetRef,
+    offset: ["start end", "end start"],
+  });
+    
+    const y = useTransform(scrollYProgress, [0, 1], [250, -250]);
+    const opacity = useTransform(scrollYProgress, [0.25,0.5,0.75], [0,1,0]);
   return (
     <motion.div
       style={{
-        
+              y,
+          opacity,
       }}
-      
-      className="absolute left-0 top-0 flex h-screen w-full flex-col items-center justify-center text-white"
+      ref={targetRef}
+      className="absolute left-0 top-0 flex h-[100vh] w-full flex-col items-center justify-center text-white"
     >
       <p className="mb-2 text-center text-xl md:mb-4 md:text-3xl">
         {subheading}
