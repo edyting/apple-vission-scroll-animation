@@ -7,7 +7,7 @@ export const TextParallaxExample = () => {
     return (
       <div className="">
         <TextParallax
-          imgurl={"/public/8443739-uhd_4096_2160_25fps.mp4"}
+          imgurl={"/8443739-uhd_4096_2160_25fps.mp4"}
           subheading="Craftsmanship"
           heading="Precision in Every Detail"
         >
